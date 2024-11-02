@@ -63,7 +63,7 @@ public class CardsController {
                                                      @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be 10 digits")
                                                      String mobileNumber) {
         CardsDto cardsDto = cardsService.fetchCard(mobileNumber);
-        return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
+        return ResponseEntity.ok(cardsDto);
     }
 
     @Operation(summary = "Creates a card", description = "Creates a card. Specify only a mobile number in DTO")
@@ -99,7 +99,7 @@ public class CardsController {
     @PutMapping("/update")
     public ResponseEntity<CardsDto> updateCardDetails(@Valid @RequestBody CardsDto cardsDto) {
         CardsDto updatedCard = cardsService.updateCard(cardsDto);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedCard);
+        return ResponseEntity.ok(updatedCard);
     }
 
     @Operation(summary = "Deletes a card by a mobile number", description = "Deletes a card by a mobile number")
@@ -124,6 +124,6 @@ public class CardsController {
 
         CardsDto cardsDto = cardsService.deleteCard(mobileNumber);
 
-        return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
+        return ResponseEntity.ok(cardsDto);
     }
 }
